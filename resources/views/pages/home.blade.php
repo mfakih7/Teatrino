@@ -1,14 +1,12 @@
 @extends('layouts.app')
 
-@section('title', $homeContent->t('hero_title') ?? __('site.pages.home.title'))
+@section('title', $homeContent->t('hero_title') ?: __('site.pages.home.title'))
 
 @php
-    $whatsappNumber = $siteSettings->whatsapp_number ?: config('site.whatsapp_number');
-    $whatsappMessage = $siteSettings->whatsapp_message ?: config('site.whatsapp_message');
-    $whatsappUrl = $whatsappNumber
-        ? 'https://wa.me/'.preg_replace('/\D+/', '', $whatsappNumber).'?text='.urlencode($whatsappMessage)
-        : route('contact', ['locale' => $currentLocale]);
-    $whatsappExternal = (bool) $whatsappNumber;
+    use App\Support\SiteContact;
+
+    $whatsappUrl = SiteContact::whatsappUrl($siteSettings) ?: route('contact', ['locale' => $currentLocale]);
+    $whatsappExternal = (bool) SiteContact::whatsappUrl($siteSettings);
 @endphp
 
 @section('content')
@@ -19,27 +17,27 @@
         :whatsapp-external="$whatsappExternal"
     />
 
-    <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24 lg:py-28">
+    <section class="teatrino-section teatrino-container">
         <div class="mx-auto max-w-2xl text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-teatrino-charcoal sm:text-4xl">
-                {{ $homeContent->t('welcome_heading') ?? __('site.home.welcome_heading') }}
+            <h2 class="text-2xl font-bold tracking-tight text-teatrino-charcoal sm:text-3xl md:text-4xl">
+                {{ $homeContent->t('welcome_heading') ?: __('site.home.welcome_heading') }}
             </h2>
-            <p class="mt-4 text-lg leading-relaxed text-teatrino-charcoal/75">
-                {{ $siteSettings->t('footer_text') ?? __('site.site.tagline') }}
+            <p class="mt-4 text-base leading-relaxed text-teatrino-charcoal/75 sm:text-lg">
+                {{ $siteSettings->t('footer_text') ?: __('site.site.tagline') }}
             </p>
         </div>
 
-        <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+        <div class="mt-10 grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
             @forelse ($featureCards as $feature)
-                <article class="group rounded-3xl border border-white bg-white p-8 shadow-sm ring-1 ring-teatrino-charcoal/5 transition hover:-translate-y-1 hover:shadow-md">
-                    <div class="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-teatrino-yellow/40 text-2xl">
+                <article class="group teatrino-card p-6 sm:p-8">
+                    <div class="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-teatrino-yellow/50 to-teatrino-soft-pink/40 text-2xl shadow-sm">
                         {{ $feature->icon }}
                     </div>
-                    <h3 class="text-xl font-bold text-teatrino-charcoal">
+                    <h3 class="text-lg font-bold text-teatrino-charcoal sm:text-xl">
                         {{ $feature->t('title') }}
                     </h3>
                     @if ($feature->hasT('description'))
-                        <p class="mt-3 leading-relaxed text-teatrino-charcoal/70">
+                        <p class="mt-3 text-sm leading-relaxed text-teatrino-charcoal/70 sm:text-base">
                             {{ $feature->t('description') }}
                         </p>
                     @endif
@@ -50,19 +48,19 @@
         </div>
     </section>
 
-    <section class="bg-white py-20 sm:py-24 lg:py-28">
-        <div class="mx-auto max-w-6xl px-4 sm:px-6">
-            <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-                <div class="space-y-6">
-                    <h2 class="text-3xl font-bold tracking-tight text-teatrino-charcoal sm:text-4xl">
-                        {{ $homeContent->t('explore_heading') ?? __('site.home.explore_heading') }}
+    <section class="bg-white py-14 sm:py-16 md:py-20">
+        <div class="teatrino-container">
+            <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+                <div class="space-y-5 text-center lg:text-start">
+                    <h2 class="text-2xl font-bold tracking-tight text-teatrino-charcoal sm:text-3xl md:text-4xl">
+                        {{ $homeContent->t('explore_heading') ?: __('site.home.explore_heading') }}
                     </h2>
-                    <p class="text-lg leading-relaxed text-teatrino-charcoal/75">
-                        {{ $homeContent->t('explore_text') ?? __('site.home.explore_text') }}
+                    <p class="text-base leading-relaxed text-teatrino-charcoal/75 sm:text-lg">
+                        {{ $homeContent->t('explore_text') ?: __('site.home.explore_text') }}
                     </p>
                     <a
                         href="{{ route('about', ['locale' => $currentLocale]) }}"
-                        class="inline-flex items-center gap-2 rounded-full bg-teatrino-teal px-6 py-3 text-sm font-bold text-white shadow-md shadow-teatrino-teal/25 transition hover:bg-teatrino-teal/90"
+                        class="inline-flex items-center justify-center gap-2 rounded-full bg-teatrino-teal px-6 py-3 text-sm font-bold text-white shadow-md shadow-teatrino-teal/25 transition hover:bg-teatrino-teal/90"
                     >
                         {{ __('site.pages.home.cta') }}
                         <svg class="h-4 w-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -71,22 +69,22 @@
                     </a>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4 sm:gap-5">
+                <div class="grid grid-cols-2 gap-3 sm:gap-5">
                     <a
                         href="{{ route('portfolio', ['locale' => $currentLocale]) }}"
-                        class="rounded-3xl bg-teatrino-yellow/50 p-6 shadow-sm transition hover:bg-teatrino-yellow/70 sm:p-8"
+                        class="teatrino-card rounded-3xl bg-gradient-to-br from-teatrino-yellow/45 to-teatrino-yellow/25 p-5 hover:shadow-lg sm:p-7"
                     >
                         <p class="text-3xl sm:text-4xl" aria-hidden="true">🎨</p>
-                        <p class="mt-3 text-base font-bold text-teatrino-charcoal sm:text-lg">{{ __('site.nav.portfolio') }}</p>
-                        <p class="mt-1 text-sm text-teatrino-charcoal/65">{{ __('site.home.card_portfolio') }}</p>
+                        <p class="mt-3 text-sm font-bold text-teatrino-charcoal sm:text-lg">{{ __('site.nav.portfolio') }}</p>
+                        <p class="mt-1 text-xs text-teatrino-charcoal/65 sm:text-sm">{{ __('site.home.card_portfolio') }}</p>
                     </a>
                     <a
                         href="{{ route('articles', ['locale' => $currentLocale]) }}"
-                        class="rounded-3xl bg-teatrino-teal/20 p-6 shadow-sm transition hover:bg-teatrino-teal/30 sm:p-8"
+                        class="teatrino-card rounded-3xl bg-gradient-to-br from-teatrino-teal/25 to-teatrino-soft-blue/30 p-5 hover:shadow-lg sm:p-7"
                     >
                         <p class="text-3xl sm:text-4xl" aria-hidden="true">📚</p>
-                        <p class="mt-3 text-base font-bold text-teatrino-charcoal sm:text-lg">{{ __('site.nav.articles') }}</p>
-                        <p class="mt-1 text-sm text-teatrino-charcoal/65">{{ __('site.home.card_articles') }}</p>
+                        <p class="mt-3 text-sm font-bold text-teatrino-charcoal sm:text-lg">{{ __('site.nav.articles') }}</p>
+                        <p class="mt-1 text-xs text-teatrino-charcoal/65 sm:text-sm">{{ __('site.home.card_articles') }}</p>
                     </a>
                 </div>
             </div>

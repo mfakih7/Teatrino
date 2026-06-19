@@ -8,6 +8,7 @@ return [
         'portfolio' => 'Portfolio',
         'articles' => 'Articles',
         'contact' => 'Contact',
+        'menu' => 'Navigation principale',
     ],
 
     'site' => [
@@ -84,6 +85,14 @@ return [
 
     'modal' => [
         'close' => 'Fermer',
+    ],
+
+    'contact' => [
+        'whatsapp_title' => 'Discutez avec nous sur WhatsApp',
+        'whatsapp_text' => 'Contactez-nous pour une visite, une inscription ou toute question sur votre enfant.',
+        'email_title' => 'Écrivez-nous',
+        'email_text' => 'Nous répondons volontiers à vos questions par e-mail.',
+        'social_text' => 'Suivez les moments et actualités de la crèche.',
     ],
 
 ];

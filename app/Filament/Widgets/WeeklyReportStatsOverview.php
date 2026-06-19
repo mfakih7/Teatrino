@@ -26,12 +26,15 @@ class WeeklyReportStatsOverview extends StatsOverviewWidget
         return [
             Stat::make('Reports This Week', (int) ($stats->created_this_week ?? 0))
                 ->description('Created this week')
+                ->descriptionIcon('heroicon-m-document-text')
                 ->color('primary'),
             Stat::make('Pending PDF', (int) ($stats->pending_pdf ?? 0))
                 ->description('Needs PDF generation')
+                ->descriptionIcon('heroicon-m-document-minus')
                 ->color('warning'),
             Stat::make('Sent This Week', (int) ($stats->sent_this_week ?? 0))
                 ->description('WhatsApp handoff marked')
+                ->descriptionIcon('heroicon-m-paper-airplane')
                 ->color('success'),
         ];
     }

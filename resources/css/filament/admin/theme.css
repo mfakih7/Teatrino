@@ -1,0 +1,27 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+@layer components {
+    .fi-body {
+        @apply bg-gray-50;
+    }
+
+    .fi-simple-layout {
+        background: linear-gradient(
+            135deg,
+            color-mix(in srgb, #FFD166 18%, white) 0%,
+            color-mix(in srgb, #FFF9F0 90%, white) 40%,
+            color-mix(in srgb, #2EC4B6 12%, white) 100%
+        );
+    }
+
+    .fi-simple-main {
+        @apply shadow-xl ring-1 ring-gray-950/5;
+    }
+
+    .fi-wi-stats-overview-stat {
+        @apply rounded-2xl shadow-sm ring-1 ring-gray-950/5 transition hover:shadow-md;
+    }
+}

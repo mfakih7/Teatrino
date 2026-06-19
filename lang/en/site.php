@@ -8,6 +8,7 @@ return [
         'portfolio' => 'Portfolio',
         'articles' => 'Articles',
         'contact' => 'Contact Us',
+        'menu' => 'Main navigation',
     ],
 
     'site' => [
@@ -84,6 +85,14 @@ return [
 
     'modal' => [
         'close' => 'Close',
+    ],
+
+    'contact' => [
+        'whatsapp_title' => 'Chat with us on WhatsApp',
+        'whatsapp_text' => 'Reach out for visits, enrollment questions, or a friendly chat about your little one.',
+        'email_title' => 'Email us',
+        'email_text' => 'We are happy to answer your questions by email.',
+        'social_text' => 'Follow our nursery moments and updates.',
     ],
 
 ];

@@ -28,7 +28,7 @@ class HomeContentResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Website Content';
+        return 'Website Management';
     }
 
     public static function form(Schema $schema): Schema

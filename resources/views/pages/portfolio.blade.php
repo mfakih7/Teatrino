@@ -8,13 +8,11 @@
         :subtitle="__('site.pages.portfolio.subtitle')"
     />
 
-    <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <section class="teatrino-section teatrino-container">
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             @forelse ($portfolioItems as $item)
-                @php
-                    $image = $item->image();
-                @endphp
-                <article class="overflow-hidden rounded-3xl border border-teatrino-yellow/30 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                @php $image = $item->image(); @endphp
+                <article class="teatrino-card group">
                     <button
                         type="button"
                         class="content-modal-trigger block w-full text-start"
@@ -29,20 +27,20 @@
                                 variant="thumbnail"
                                 :alt="$item->t('title')"
                                 placeholder-icon="🌈"
-                                class="h-full w-full object-cover transition duration-300 hover:scale-105"
-                                sizes="(max-width: 1024px) 50vw, 33vw"
+                                class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             />
                         </div>
                         <div class="p-5">
-                            <h2 class="font-bold text-teatrino-charcoal">{{ $item->t('title') }}</h2>
+                            <h2 class="line-clamp-2 font-bold text-teatrino-charcoal">{{ $item->t('title') }}</h2>
                             @if ($item->hasT('description'))
-                                <p class="mt-2 line-clamp-2 text-sm text-teatrino-charcoal/70">{{ $item->t('description') }}</p>
+                                <p class="mt-2 line-clamp-2 text-sm leading-relaxed text-teatrino-charcoal/70">{{ $item->t('description') }}</p>
                             @endif
                         </div>
                     </button>
                 </article>
             @empty
-                <p class="col-span-full text-center text-teatrino-charcoal/60">{{ __('site.site.coming_soon') }}</p>
+                <p class="col-span-full rounded-3xl border border-dashed border-teatrino-charcoal/15 bg-white p-10 text-center text-teatrino-charcoal/60">{{ __('site.site.coming_soon') }}</p>
             @endforelse
         </div>
     </section>

@@ -7,6 +7,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -30,6 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->login()
             ->brandName('Teatrino Admin')
             ->brandLogo(fn () => once(fn () => SiteSetting::cached()->logoUrl()))
@@ -41,6 +43,14 @@ class AdminPanelProvider extends PanelProvider
                 'warning' => Color::hex('#FFD166'),
                 'gray' => Color::hex('#2D3436'),
             ])
+            ->navigationGroups([
+                NavigationGroup::make('Website Management'),
+                NavigationGroup::make('Nursery Management'),
+                NavigationGroup::make('Finance'),
+                NavigationGroup::make('Reports'),
+                NavigationGroup::make('System'),
+            ])
+            ->sidebarCollapsibleOnDesktop()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([

@@ -28,15 +28,19 @@ class NurseryStatsOverview extends StatsOverviewWidget
         return [
             Stat::make('Total Parents', (int) ($parentStats->total ?? 0))
                 ->description('Registered families')
+                ->descriptionIcon('heroicon-m-users')
                 ->color('primary'),
             Stat::make('Active Parents', (int) ($parentStats->active ?? 0))
                 ->description('Currently active')
+                ->descriptionIcon('heroicon-m-check-badge')
                 ->color('success'),
             Stat::make('Total Children', (int) ($childStats->total ?? 0))
                 ->description('Enrolled children')
+                ->descriptionIcon('heroicon-m-face-smile')
                 ->color('warning'),
             Stat::make('Active Children', (int) ($childStats->active ?? 0))
                 ->description('Currently enrolled')
+                ->descriptionIcon('heroicon-m-sparkles')
                 ->color('success'),
         ];
     }

@@ -118,13 +118,13 @@ class ChildWeeklyReportsTable
                     ->label('View PDF')
                     ->icon('heroicon-o-eye')
                     ->color('gray')
-                    ->visible(fn (ChildWeeklyReport $record) => $record->hasPdf())
+                    ->visible(fn (ChildWeeklyReport $record) => filled($record->pdf_path))
                     ->url(fn (ChildWeeklyReport $record) => $record->pdf_url, shouldOpenInNewTab: true),
                 Action::make('downloadPdf')
                     ->label('Download PDF')
                     ->icon('heroicon-o-arrow-down-tray')
                     ->color('success')
-                    ->visible(fn (ChildWeeklyReport $record) => $record->hasPdf())
+                    ->visible(fn (ChildWeeklyReport $record) => filled($record->pdf_path))
                     ->action(function (ChildWeeklyReport $record) {
                         $generator = app(WeeklyReportPdfGenerator::class);
 
@@ -137,7 +137,7 @@ class ChildWeeklyReportsTable
                     ->label('WhatsApp Parent')
                     ->icon('heroicon-o-chat-bubble-left-right')
                     ->color('info')
-                    ->visible(fn (ChildWeeklyReport $record) => $record->hasPdf() && ReportWhatsApp::parentUrl($record))
+                    ->visible(fn (ChildWeeklyReport $record) => filled($record->pdf_path) && ReportWhatsApp::parentUrl($record))
                     ->action(function (ChildWeeklyReport $record) {
                         $record->update(['sent_at' => now()]);
 

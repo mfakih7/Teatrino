@@ -20,7 +20,108 @@
 }
 
 @layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
     [dir='rtl'] body {
         font-family: var(--font-arabic);
+    }
+
+    ::selection {
+        background-color: color-mix(in srgb, var(--color-teatrino-teal) 35%, transparent);
+    }
+}
+
+@layer components {
+    .teatrino-container {
+        @apply mx-auto max-w-6xl px-4 sm:px-6;
+    }
+
+    .teatrino-section {
+        @apply py-14 sm:py-16 md:py-20;
+    }
+
+    .teatrino-card {
+        @apply overflow-hidden rounded-3xl border border-teatrino-charcoal/10 bg-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md;
+    }
+
+    .teatrino-btn-primary {
+        @apply inline-flex items-center justify-center gap-2 rounded-full bg-teatrino-coral px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-teatrino-coral/25 transition hover:bg-teatrino-coral/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-teatrino-coral focus-visible:ring-offset-2 sm:px-8 sm:py-4 sm:text-base;
+    }
+
+    .teatrino-btn-secondary {
+        @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-teatrino-teal bg-white px-6 py-3.5 text-sm font-bold text-teatrino-teal shadow-sm transition hover:bg-teatrino-teal hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-teatrino-teal focus-visible:ring-offset-2 sm:px-8 sm:py-4 sm:text-base;
+    }
+
+    .teatrino-prose {
+        @apply max-w-none text-teatrino-charcoal/80 leading-relaxed;
+    }
+
+    .teatrino-prose :where(h1, h2, h3, h4) {
+        @apply font-bold text-teatrino-charcoal;
+    }
+
+    .teatrino-prose :where(h2) {
+        @apply mt-8 text-2xl;
+    }
+
+    .teatrino-prose :where(h3) {
+        @apply mt-6 text-xl;
+    }
+
+    .teatrino-prose :where(p) {
+        @apply mt-4;
+    }
+
+    .teatrino-prose :where(ul, ol) {
+        @apply mt-4 ms-5 list-outside space-y-2;
+    }
+
+    .teatrino-prose :where(ul) {
+        @apply list-disc;
+    }
+
+    .teatrino-prose :where(ol) {
+        @apply list-decimal;
+    }
+
+    .teatrino-prose :where(a) {
+        @apply font-semibold text-teatrino-teal underline decoration-teatrino-teal/30 underline-offset-2 hover:decoration-teatrino-teal;
+    }
+
+    .teatrino-prose :where(img) {
+        @apply my-6 rounded-2xl;
+    }
+
+    .teatrino-prose :where(blockquote) {
+        @apply my-6 border-s-4 border-teatrino-yellow bg-teatrino-yellow/10 px-4 py-3 italic;
+    }
+
+    .umbrella-gradient-bar {
+        @apply h-1 bg-gradient-to-r from-teatrino-yellow via-teatrino-teal via-teatrino-coral to-teatrino-soft-pink;
+    }
+
+    .nav-mobile-panel {
+        @apply border-t border-teatrino-yellow/20 bg-white/95 backdrop-blur-md;
+    }
+
+    .nav-mobile-panel.is-open {
+        animation: slideDown 0.25s ease-out;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-0.5rem);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .modal-panel {
+        @apply relative max-h-[min(90vh,900px)] w-full max-w-3xl overflow-y-auto rounded-3xl bg-white shadow-2xl;
     }
 }

@@ -29,7 +29,7 @@ class ChildWeeklyReportResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Nursery Management';
+        return 'Reports';
     }
 
     public static function form(Schema $schema): Schema

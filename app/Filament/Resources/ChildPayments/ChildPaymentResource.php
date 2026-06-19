@@ -29,7 +29,7 @@ class ChildPaymentResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Nursery Management';
+        return 'Finance';
     }
 
     public static function form(Schema $schema): Schema

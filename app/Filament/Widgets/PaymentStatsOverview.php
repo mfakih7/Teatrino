@@ -34,15 +34,19 @@ class PaymentStatsOverview extends StatsOverviewWidget
         return [
             Stat::make('Pending Payments', (int) ($stats->pending_count ?? 0))
                 ->description('Awaiting payment')
+                ->descriptionIcon('heroicon-m-clock')
                 ->color('warning'),
             Stat::make('Overdue Payments', (int) ($stats->overdue_count ?? 0))
                 ->description('Needs follow-up')
+                ->descriptionIcon('heroicon-m-exclamation-triangle')
                 ->color('danger'),
             Stat::make('Paid This Month', (int) ($stats->paid_this_month ?? 0))
                 ->description(now()->format('F Y'))
+                ->descriptionIcon('heroicon-m-check-circle')
                 ->color('success'),
             Stat::make('Unpaid Amount (This Month)', number_format((float) ($stats->unpaid_amount ?? 0), 2).' USD')
                 ->description('Pending + overdue')
+                ->descriptionIcon('heroicon-m-banknotes')
                 ->color('danger'),
         ];
     }
