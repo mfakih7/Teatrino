@@ -10,52 +10,62 @@
 
     @if ($aboutPage?->is_active)
         <section class="teatrino-section teatrino-container max-w-5xl">
-            @if ($aboutPage->hasT('body'))
-                <div class="teatrino-prose rounded-3xl border border-teatrino-charcoal/5 bg-white p-6 shadow-sm sm:p-8 md:p-10">
-                    {!! $aboutPage->t('body') !!}
-                </div>
-            @endif
-
             @if ($aboutPage->galleryMedia()->exists())
                 @php $gallery = $aboutPage->galleryMedia->take(3); @endphp
-                <div class="mt-10 grid gap-4 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
+                <div class="reveal mb-12 grid gap-4 sm:grid-cols-6 sm:gap-5 lg:mb-16">
                     @foreach ($gallery as $index => $image)
                         <div @class([
-                            'overflow-hidden rounded-3xl shadow-md ring-1 ring-teatrino-charcoal/5',
-                            'sm:col-span-2 lg:col-span-1' => $index === 0 && $gallery->count() === 3,
-                            'lg:row-span-1' => true,
+                            'overflow-hidden rounded-[var(--radius-teatrino-xl)] shadow-[var(--shadow-teatrino-md)] ring-1 ring-teatrino-charcoal/5',
+                            'sm:col-span-4 sm:row-span-2' => $index === 0,
+                            'sm:col-span-2' => $index > 0,
                         ])>
                             <x-responsive-image
                                 :media="$image"
                                 variant="thumbnail"
-                                class="h-52 w-full object-cover sm:h-56 md:h-64"
-                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                class="w-full object-cover {{ $index === 0 ? 'h-56 sm:h-full sm:min-h-[18rem]' : 'h-44 sm:h-40' }}"
+                                sizes="(max-width: 640px) 100vw, 50vw"
                             />
                         </div>
                     @endforeach
                 </div>
             @endif
 
-            <div class="mt-10 grid gap-5 md:mt-12 md:grid-cols-2 md:gap-6">
-                @if ($aboutPage->hasT('mission'))
-                    <div class="rounded-3xl border border-teatrino-teal/20 bg-gradient-to-br from-white to-teatrino-teal/5 p-7 shadow-sm sm:p-8">
-                        <div class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-teatrino-teal/15 text-xl" aria-hidden="true">🎯</div>
-                        <h2 class="text-xl font-bold text-teatrino-teal">{{ __('site.about.mission') }}</h2>
-                        <p class="mt-4 leading-relaxed text-teatrino-charcoal/80">{{ $aboutPage->t('mission') }}</p>
+            <div class="teatrino-timeline">
+                @if ($aboutPage->hasT('body'))
+                    <div class="teatrino-timeline-item reveal">
+                        <div class="teatrino-timeline-dot" aria-hidden="true">📖</div>
+                        <div class="teatrino-card-flat">
+                            <p class="teatrino-eyebrow">{{ __('site.about.story') }}</p>
+                            <div class="teatrino-prose mt-4">{!! $aboutPage->t('body') !!}</div>
+                        </div>
                     </div>
                 @endif
+
+                @if ($aboutPage->hasT('mission'))
+                    <div class="teatrino-timeline-item reveal reveal-delay-1">
+                        <div class="teatrino-timeline-dot bg-teatrino-teal text-white" aria-hidden="true">🎯</div>
+                        <div class="rounded-[var(--radius-teatrino-xl)] border border-teatrino-teal/20 bg-gradient-to-br from-white to-teatrino-teal/5 p-7 shadow-[var(--shadow-teatrino-sm)] sm:p-8">
+                            <h2 class="teatrino-heading-md text-teatrino-teal">{{ __('site.about.mission') }}</h2>
+                            <p class="mt-4 leading-relaxed text-teatrino-charcoal/80">{{ $aboutPage->t('mission') }}</p>
+                        </div>
+                    </div>
+                @endif
+
                 @if ($aboutPage->hasT('vision'))
-                    <div class="rounded-3xl border border-teatrino-coral/20 bg-gradient-to-br from-white to-teatrino-coral/5 p-7 shadow-sm sm:p-8">
-                        <div class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-teatrino-coral/15 text-xl" aria-hidden="true">🌈</div>
-                        <h2 class="text-xl font-bold text-teatrino-coral">{{ __('site.about.vision') }}</h2>
-                        <p class="mt-4 leading-relaxed text-teatrino-charcoal/80">{{ $aboutPage->t('vision') }}</p>
+                    <div class="teatrino-timeline-item reveal reveal-delay-2">
+                        <div class="teatrino-timeline-dot bg-teatrino-coral text-white" aria-hidden="true">🌈</div>
+                        <div class="rounded-[var(--radius-teatrino-xl)] border border-teatrino-coral/20 bg-gradient-to-br from-white to-teatrino-coral/5 p-7 shadow-[var(--shadow-teatrino-sm)] sm:p-8">
+                            <h2 class="teatrino-heading-md text-teatrino-coral">{{ __('site.about.vision') }}</h2>
+                            <p class="mt-4 leading-relaxed text-teatrino-charcoal/80">{{ $aboutPage->t('vision') }}</p>
+                        </div>
                     </div>
                 @endif
             </div>
         </section>
     @else
         <section class="teatrino-section teatrino-container max-w-3xl">
-            <div class="rounded-3xl border border-teatrino-teal/20 bg-white p-8 text-center shadow-sm">
+            <div class="teatrino-empty reveal">
+                <div class="teatrino-empty-icon" aria-hidden="true">☂️</div>
                 <p class="text-teatrino-charcoal/80">{{ __('site.site.coming_soon') }}</p>
             </div>
         </section>

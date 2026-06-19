@@ -26,6 +26,14 @@ return [
         'card_portfolio' => 'Photos & moments',
         'card_articles' => 'Conseils pour les familles',
         'coming_soon_hint' => 'Nous préparons d\'autres histoires et actualités pour vous.',
+        'stats_eyebrow' => 'En chiffres',
+        'stats_title' => 'Une crèche fondée sur la confiance et la joie',
+        'stats' => [
+            'families' => ['value' => '100+', 'label' => 'Familles heureuses'],
+            'activities' => ['value' => '50+', 'label' => 'Activités par semaine'],
+            'languages' => ['value' => '3', 'label' => 'Langues prises en charge'],
+            'care' => ['value' => '10+', 'label' => 'Années de soin'],
+        ],
         'features' => [
             'creative' => [
                 'title' => 'Jeu créatif',
@@ -75,11 +83,18 @@ return [
     ],
 
     'about' => [
+        'story' => 'Notre histoire',
         'mission' => 'Notre mission',
         'vision' => 'Notre vision',
     ],
 
+    'portfolio' => [
+        'eyebrow' => 'Galerie',
+        'lead' => 'Un aperçu de l\'univers créatif et bienveillant que nous offrons chaque jour.',
+    ],
+
     'articles' => [
+        'featured' => 'Article à la une',
         'read_more' => 'Lire l\'article',
     ],
 
@@ -93,6 +108,8 @@ return [
         'email_title' => 'Écrivez-nous',
         'email_text' => 'Nous répondons volontiers à vos questions par e-mail.',
         'social_text' => 'Suivez les moments et actualités de la crèche.',
+        'cta_title' => 'Prêt à nous contacter ?',
+        'cta_text' => 'Nous serions ravis d\'accueillir votre famille. Écrivez-nous sur WhatsApp et nous vous répondrons bientôt.',
     ],
 
 ];

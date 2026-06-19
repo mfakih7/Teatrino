@@ -26,6 +26,14 @@ return [
         'card_portfolio' => 'Photos & moments',
         'card_articles' => 'Tips for families',
         'coming_soon_hint' => 'We are preparing more stories and updates for you.',
+        'stats_eyebrow' => 'By the numbers',
+        'stats_title' => 'A nursery built on trust and joy',
+        'stats' => [
+            'families' => ['value' => '100+', 'label' => 'Happy families'],
+            'activities' => ['value' => '50+', 'label' => 'Weekly activities'],
+            'languages' => ['value' => '3', 'label' => 'Languages supported'],
+            'care' => ['value' => '10+', 'label' => 'Years of care'],
+        ],
         'features' => [
             'creative' => [
                 'title' => 'Creative Play',
@@ -75,11 +83,18 @@ return [
     ],
 
     'about' => [
+        'story' => 'Our Story',
         'mission' => 'Our Mission',
         'vision' => 'Our Vision',
     ],
 
+    'portfolio' => [
+        'eyebrow' => 'Gallery',
+        'lead' => 'A glimpse into the creative, caring world we build for children every day.',
+    ],
+
     'articles' => [
+        'featured' => 'Featured article',
         'read_more' => 'Read article',
     ],
 
@@ -93,6 +108,8 @@ return [
         'email_title' => 'Email us',
         'email_text' => 'We are happy to answer your questions by email.',
         'social_text' => 'Follow our nursery moments and updates.',
+        'cta_title' => 'Ready to connect?',
+        'cta_text' => 'We would love to welcome your family. Message us on WhatsApp and we will get back to you soon.',
     ],
 
 ];

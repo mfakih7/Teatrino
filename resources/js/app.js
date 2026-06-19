@@ -1,10 +1,55 @@
 import './bootstrap';
 
 document.addEventListener('DOMContentLoaded', () => {
+    initScrollHeader();
     initMobileNav();
     initLanguageSwitcher();
     initContentModal();
+    initRevealAnimations();
 });
+
+function initScrollHeader() {
+    const header = document.getElementById('site-header');
+
+    if (! header) {
+        return;
+    }
+
+    const update = () => {
+        header.classList.toggle('is-scrolled', window.scrollY > 16);
+    };
+
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+}
+
+function initRevealAnimations() {
+    const elements = document.querySelectorAll('.reveal');
+
+    if (! elements.length) {
+        return;
+    }
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        elements.forEach((el) => el.classList.add('is-visible'));
+
+        return;
+    }
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+}
 
 function initMobileNav() {
     const toggle = document.getElementById('mobile-nav-toggle');
@@ -22,6 +67,7 @@ function initMobileNav() {
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
         iconOpen?.classList.toggle('hidden', open);
         iconClose?.classList.toggle('hidden', ! open);
+        document.body.classList.toggle('overflow-hidden', open);
     };
 
     toggle.addEventListener('click', () => {

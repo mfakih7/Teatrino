@@ -4,24 +4,173 @@
 @source '../../../../resources/views/filament/**/*';
 
 @layer components {
+    /* ── Global shell ── */
     .fi-body {
-        @apply bg-gray-50;
+        @apply bg-[#f8f9fa] antialiased;
     }
 
     .fi-simple-layout {
         background: linear-gradient(
-            135deg,
-            color-mix(in srgb, #FFD166 18%, white) 0%,
-            color-mix(in srgb, #FFF9F0 90%, white) 40%,
-            color-mix(in srgb, #2EC4B6 12%, white) 100%
+            145deg,
+            color-mix(in srgb, #FFD166 14%, white) 0%,
+            color-mix(in srgb, #FFF9F0 92%, white) 42%,
+            color-mix(in srgb, #2EC4B6 10%, white) 100%
         );
     }
 
     .fi-simple-main {
-        @apply shadow-xl ring-1 ring-gray-950/5;
+        @apply rounded-2xl shadow-xl ring-1 ring-gray-950/5;
     }
 
+    .fi-logo {
+        @apply font-semibold tracking-tight;
+    }
+
+    /* ── Sidebar ── */
+    .fi-sidebar {
+        @apply border-e border-gray-200/80 bg-white shadow-sm;
+    }
+
+    .fi-sidebar-header {
+        @apply border-b border-gray-100 py-4;
+    }
+
+    .fi-sidebar-group-label {
+        @apply text-[0.65rem] font-bold uppercase tracking-[0.16em] text-gray-400;
+    }
+
+    .fi-sidebar-item-button {
+        @apply rounded-xl transition duration-200;
+    }
+
+    .fi-sidebar-item-button:hover {
+        @apply bg-gray-50;
+    }
+
+    .fi-sidebar-item-active .fi-sidebar-item-button {
+        @apply bg-[#2EC4B6]/10 font-semibold text-[#2EC4B6] ring-1 ring-[#2EC4B6]/15;
+    }
+
+    .fi-sidebar-item-icon {
+        @apply transition-colors duration-200;
+    }
+
+    .fi-sidebar-item-active .fi-sidebar-item-icon {
+        @apply text-[#2EC4B6];
+    }
+
+    /* ── Topbar ── */
+    .fi-topbar {
+        @apply border-b border-gray-200/80 bg-white/90 backdrop-blur-xl shadow-sm;
+    }
+
+    /* ── Dashboard stats ── */
     .fi-wi-stats-overview-stat {
-        @apply rounded-2xl shadow-sm ring-1 ring-gray-950/5 transition hover:shadow-md;
+        @apply rounded-2xl border border-gray-950/5 bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md;
+    }
+
+    .fi-wi-stats-overview-stat-value {
+        @apply text-2xl font-bold tracking-tight;
+    }
+
+    .fi-wi-stats-overview-stat-description {
+        @apply text-sm text-gray-500;
+    }
+
+    /* ── Sections & forms ── */
+    .fi-section {
+        @apply rounded-2xl border border-gray-950/5 bg-white shadow-sm;
+    }
+
+    .fi-section-header-heading {
+        @apply text-base font-semibold tracking-tight text-gray-900;
+    }
+
+    .fi-fo-field-wrp-label label {
+        @apply text-sm font-medium text-gray-700;
+    }
+
+    .fi-fo-field-wrp-helper-text {
+        @apply text-xs leading-relaxed text-gray-500;
+    }
+
+    .fi-input-wrp {
+        @apply rounded-xl ring-1 ring-gray-950/10 transition duration-200 focus-within:ring-2 focus-within:ring-[#2EC4B6]/40;
+    }
+
+    .fi-input {
+        @apply text-sm;
+    }
+
+    .fi-fo-tabs-tab {
+        @apply rounded-lg px-3 py-2 text-sm font-medium transition;
+    }
+
+    /* ── Tables ── */
+    .fi-ta-header-cell {
+        @apply text-xs font-semibold uppercase tracking-wide text-gray-500;
+    }
+
+    .fi-ta-row {
+        @apply transition duration-150;
+    }
+
+    .fi-ta-row:hover {
+        @apply bg-gray-50/80;
+    }
+
+    .fi-ta-cell {
+        @apply py-3.5 text-sm;
+    }
+
+    .fi-ta-filters {
+        @apply rounded-2xl border border-gray-950/5 bg-white shadow-sm;
+    }
+
+    .fi-ta-search-field .fi-input-wrp {
+        @apply rounded-full;
+    }
+
+    /* ── Buttons ── */
+    .fi-btn {
+        @apply rounded-xl font-semibold shadow-sm transition duration-200;
+    }
+
+    .fi-btn:hover {
+        @apply -translate-y-px shadow-md;
+    }
+
+    .fi-btn-color-primary {
+        @apply bg-[#2EC4B6] hover:bg-[#29b0a4];
+    }
+
+    .fi-btn-color-danger {
+        @apply bg-[#E76F51] hover:bg-[#d9654a];
+    }
+
+    /* ── File upload ── */
+    .fi-fo-file-upload {
+        @apply rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50/50 transition duration-200 hover:border-[#2EC4B6]/40 hover:bg-[#2EC4B6]/5;
+    }
+
+    .fi-fo-file-upload-dragging {
+        @apply border-[#2EC4B6] bg-[#2EC4B6]/10;
+    }
+
+    /* ── Notifications ── */
+    .fi-no-notification {
+        @apply rounded-xl shadow-lg ring-1 ring-gray-950/5;
+    }
+
+    /* ── Pagination ── */
+    .fi-pagination-item {
+        @apply rounded-lg transition;
+    }
+
+    /* ── Mobile sidebar ── */
+    @media (max-width: 1023px) {
+        .fi-sidebar-open {
+            @apply shadow-2xl;
+        }
     }
 }
