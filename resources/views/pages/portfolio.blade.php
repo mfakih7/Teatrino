@@ -1,0 +1,51 @@
+@extends('layouts.app')
+
+@section('title', __('site.pages.portfolio.title'))
+
+@section('content')
+    <x-page-hero
+        :title="__('site.pages.portfolio.title')"
+        :subtitle="__('site.pages.portfolio.subtitle')"
+    />
+
+    <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            @forelse ($portfolioItems as $item)
+                @php
+                    $image = $item->image();
+                @endphp
+                <article class="overflow-hidden rounded-3xl border border-teatrino-yellow/30 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                    <button
+                        type="button"
+                        class="content-modal-trigger block w-full text-start"
+                        data-modal-title="{{ e($item->t('title')) }}"
+                        data-modal-body="{{ e($item->t('description')) }}"
+                        data-modal-image="{{ $image?->optimized_url }}"
+                        data-modal-image-webp="{{ $image?->webp_url }}"
+                    >
+                        <div class="aspect-[4/3] overflow-hidden bg-gradient-to-br from-teatrino-soft-blue/40 to-teatrino-yellow/30">
+                            <x-responsive-image
+                                :media="$image"
+                                variant="thumbnail"
+                                :alt="$item->t('title')"
+                                placeholder-icon="🌈"
+                                class="h-full w-full object-cover transition duration-300 hover:scale-105"
+                                sizes="(max-width: 1024px) 50vw, 33vw"
+                            />
+                        </div>
+                        <div class="p-5">
+                            <h2 class="font-bold text-teatrino-charcoal">{{ $item->t('title') }}</h2>
+                            @if ($item->hasT('description'))
+                                <p class="mt-2 line-clamp-2 text-sm text-teatrino-charcoal/70">{{ $item->t('description') }}</p>
+                            @endif
+                        </div>
+                    </button>
+                </article>
+            @empty
+                <p class="col-span-full text-center text-teatrino-charcoal/60">{{ __('site.site.coming_soon') }}</p>
+            @endforelse
+        </div>
+    </section>
+
+    <x-content-modal />
+@endsection

@@ -1,0 +1,24 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::table('site_settings', function (Blueprint $table) {
+            $table->string('logo_path')->nullable()->after('email');
+            $table->string('favicon_path')->nullable()->after('logo_path');
+            $table->string('social_youtube')->nullable()->after('social_tiktok');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('site_settings', function (Blueprint $table) {
+            $table->dropColumn(['logo_path', 'favicon_path', 'social_youtube']);
+        });
+    }
+};

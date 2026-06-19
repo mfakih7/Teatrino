@@ -1,0 +1,26 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source "../**/*.blade.php";
+@source "../**/*.js";
+@source "../**/*.vue";
+
+@theme {
+    --font-sans: 'Nunito', ui-sans-serif, system-ui, sans-serif;
+    --font-arabic: 'Cairo', 'Nunito', ui-sans-serif, system-ui, sans-serif;
+
+    --color-teatrino-yellow: #FFD166;
+    --color-teatrino-teal: #2EC4B6;
+    --color-teatrino-coral: #E76F51;
+    --color-teatrino-charcoal: #2D3436;
+    --color-teatrino-cream: #FFF9F0;
+    --color-teatrino-soft-pink: #FFB4A2;
+    --color-teatrino-soft-blue: #A8DADC;
+}
+
+@layer base {
+    [dir='rtl'] body {
+        font-family: var(--font-arabic);
+    }
+}

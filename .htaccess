@@ -1,0 +1,33 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    Options +FollowSymLinks
+    RewriteEngine On
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Handle X-XSRF-Token Header
+    RewriteCond %{HTTP:x-xsrf-token} .
+    RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
+
+    # Store the relative path for file-existence checks ($1 is not available in RewriteCond)
+    RewriteRule ^(.+)$ - [E=REWRITE_PATH:$1]
+
+    # Serve known static asset paths from public/
+    RewriteRule ^(build|storage|vendor|css|js|fonts|favicon\.svg|robots\.txt)(/.*)?$ public/$1$2 [L]
+
+    # Serve any other real files/directories from public/
+    RewriteCond %{ENV:REWRITE_PATH} .
+    RewriteCond public/%{ENV:REWRITE_PATH} -f [OR]
+    RewriteCond public/%{ENV:REWRITE_PATH} -d
+    RewriteRule ^(.+)$ public/$1 [L]
+
+    # All other requests → Laravel front controller at project root
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+</IfModule>
