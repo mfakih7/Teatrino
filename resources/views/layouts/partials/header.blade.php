@@ -25,6 +25,7 @@
             @foreach ([
                 'home' => route('home', ['locale' => $currentLocale]),
                 'about' => route('about', ['locale' => $currentLocale]),
+                'teachers' => route('teachers', ['locale' => $currentLocale]),
                 'portfolio' => route('portfolio', ['locale' => $currentLocale]),
                 'articles' => route('articles', ['locale' => $currentLocale]),
                 'contact' => route('contact', ['locale' => $currentLocale]),
@@ -65,7 +66,7 @@
 
     <nav id="mobile-nav" class="nav-mobile-panel hidden px-4 py-4 lg:hidden" aria-label="{{ __('site.nav.menu') }}">
         <div class="flex flex-col gap-1.5">
-            @foreach (['home', 'about', 'portfolio', 'articles', 'contact'] as $key)
+            @foreach (['home', 'about', 'teachers', 'portfolio', 'articles', 'contact'] as $key)
                 <a
                     href="{{ route($key, ['locale' => $currentLocale]) }}"
                     @class([

@@ -26,6 +26,7 @@ return [
     'gallery',
     'article',
     'portfolio',
+    'teacher',
   ],
 
 ];

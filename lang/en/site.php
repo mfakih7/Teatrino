@@ -5,6 +5,7 @@ return [
     'nav' => [
         'home' => 'Home',
         'about' => 'About Us',
+        'teachers' => 'Teachers',
         'portfolio' => 'Portfolio',
         'articles' => 'Articles',
         'contact' => 'Contact Us',
@@ -60,6 +61,10 @@ return [
             'title' => 'About Us',
             'subtitle' => 'Our story, values, and the team behind Teatrino.',
         ],
+        'teachers' => [
+            'title' => 'Our Teachers',
+            'subtitle' => 'Meet the caring educators who guide, inspire, and nurture your little ones every day.',
+        ],
         'portfolio' => [
             'title' => 'Portfolio',
             'subtitle' => 'Moments, activities, and spaces from our nursery life.',
@@ -91,6 +96,12 @@ return [
     'portfolio' => [
         'eyebrow' => 'Gallery',
         'lead' => 'A glimpse into the creative, caring world we build for children every day.',
+    ],
+
+    'teachers' => [
+        'eyebrow' => 'Our Team',
+        'lead' => 'Warm, qualified educators who bring patience, creativity, and heart to every classroom moment.',
+        'education' => 'Education & Qualifications',
     ],
 
     'articles' => [

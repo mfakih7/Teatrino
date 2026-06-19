@@ -23,7 +23,7 @@ class ArticleResource extends Resource
 
     protected static ?string $navigationLabel = 'Articles';
 
-    protected static ?int $navigationSort = 6;
+    protected static ?int $navigationSort = 7;
 
     public static function getNavigationGroup(): ?string
     {

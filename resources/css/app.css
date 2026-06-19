@@ -255,6 +255,63 @@
         @apply translate-y-2 text-lg font-bold text-white transition duration-300 group-hover:translate-y-0;
     }
 
+  /* ── Teachers ── */
+    .teacher-card {
+        @apply flex h-full flex-col overflow-hidden rounded-[var(--radius-teatrino-xl)] border border-teatrino-charcoal/[0.06] bg-white shadow-[var(--shadow-teatrino-sm)] transition duration-300 ease-out hover:-translate-y-1 hover:shadow-[var(--shadow-teatrino-md)];
+    }
+
+    .teacher-card-photo {
+        @apply relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-teatrino-soft-blue/30 to-teatrino-yellow/25;
+    }
+
+    .teacher-card-photo::after {
+        @apply pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent content-[''];
+    }
+
+    .teacher-card-body {
+        @apply flex flex-1 flex-col p-6 pt-4 sm:p-7 sm:pt-5;
+    }
+
+    .teacher-card-name {
+        @apply text-xl font-bold tracking-tight text-teatrino-charcoal sm:text-2xl;
+    }
+
+    .teacher-card-position {
+        @apply mt-2 inline-flex w-fit rounded-full px-3.5 py-1 text-xs font-bold uppercase tracking-[0.14em];
+    }
+
+    .teacher-card--teal .teacher-card-position {
+        @apply bg-teatrino-teal/12 text-teatrino-teal;
+    }
+
+    .teacher-card--coral .teacher-card-position {
+        @apply bg-teatrino-coral/12 text-teatrino-coral;
+    }
+
+    .teacher-card--yellow .teacher-card-position {
+        @apply bg-teatrino-yellow/35 text-teatrino-charcoal;
+    }
+
+    .teacher-card--soft-blue .teacher-card-position {
+        @apply bg-teatrino-soft-blue/35 text-teatrino-charcoal;
+    }
+
+    .teacher-card-description {
+        @apply mt-4 flex-1 text-sm leading-relaxed text-teatrino-charcoal/75 sm:text-[0.95rem];
+    }
+
+    .teacher-card-education {
+        @apply mt-5 rounded-2xl border border-teatrino-charcoal/[0.06] bg-teatrino-cream/70 p-4;
+    }
+
+    .teacher-card-education-label {
+        @apply text-xs font-bold uppercase tracking-[0.16em] text-teatrino-teal;
+    }
+
+    .teacher-card-education-text {
+        @apply mt-2 text-sm leading-relaxed text-teatrino-charcoal/80;
+    }
+
   /* ── Modal ── */
     .modal-backdrop {
         @apply absolute inset-0 bg-teatrino-charcoal/60 backdrop-blur-md transition-opacity;

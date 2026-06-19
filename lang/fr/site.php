@@ -5,6 +5,7 @@ return [
     'nav' => [
         'home' => 'Accueil',
         'about' => 'À propos',
+        'teachers' => 'Équipe',
         'portfolio' => 'Portfolio',
         'articles' => 'Articles',
         'contact' => 'Contact',
@@ -60,6 +61,10 @@ return [
             'title' => 'À propos',
             'subtitle' => 'Notre histoire, nos valeurs et l\'équipe derrière Teatrino.',
         ],
+        'teachers' => [
+            'title' => 'Notre équipe',
+            'subtitle' => 'Découvrez les éducateurs attentionnés qui guident, inspirent et accompagnent vos enfants chaque jour.',
+        ],
         'portfolio' => [
             'title' => 'Portfolio',
             'subtitle' => 'Moments, activités et espaces de notre vie en crèche.',
@@ -91,6 +96,12 @@ return [
     'portfolio' => [
         'eyebrow' => 'Galerie',
         'lead' => 'Un aperçu de l\'univers créatif et bienveillant que nous offrons chaque jour.',
+    ],
+
+    'teachers' => [
+        'eyebrow' => 'Notre équipe',
+        'lead' => 'Des éducateurs qualifiés et chaleureux qui apportent patience, créativité et cœur à chaque moment en classe.',
+        'education' => 'Formation & qualifications',
     ],
 
     'articles' => [

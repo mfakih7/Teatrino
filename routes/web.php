@@ -15,6 +15,7 @@ Route::middleware(SetLocale::class)->group(function () use ($supportedLocales) {
         ->group(function () {
             Route::get('/', [PageController::class, 'home'])->name('home');
             Route::get('/about', [PageController::class, 'about'])->name('about');
+            Route::get('/teachers', [PageController::class, 'teachers'])->name('teachers');
             Route::get('/portfolio', [PageController::class, 'portfolio'])->name('portfolio');
             Route::get('/articles', [PageController::class, 'articles'])->name('articles');
             Route::get('/contact', [PageController::class, 'contact'])->name('contact');

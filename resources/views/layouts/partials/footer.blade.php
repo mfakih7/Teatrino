@@ -47,7 +47,7 @@
                     {{ __('site.footer.explore') }}
                 </h2>
                 <ul class="mt-6 space-y-3.5">
-                    @foreach (['home', 'about', 'portfolio', 'articles', 'contact'] as $key)
+                    @foreach (['home', 'about', 'teachers', 'portfolio', 'articles', 'contact'] as $key)
                         <li>
                             <a
                                 href="{{ route($key, ['locale' => $currentLocale]) }}"

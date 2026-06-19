@@ -8,6 +8,7 @@ use App\Models\HomeContent;
 use App\Models\HomeFeatureCard;
 use App\Models\PortfolioItem;
 use App\Models\SiteSetting;
+use App\Models\Teacher;
 use Illuminate\View\View;
 
 class PageController extends Controller
@@ -40,6 +41,18 @@ class PageController extends Controller
                 ->with('media')
                 ->get()
                 ->filter(fn (PortfolioItem $item) => $item->hasT('title')),
+        ]);
+    }
+
+    public function teachers(): View
+    {
+        return view('pages.teachers', [
+            'teachers' => Teacher::query()
+                ->active()
+                ->ordered()
+                ->with('media')
+                ->get()
+                ->filter(fn (Teacher $teacher) => $teacher->hasT('name')),
         ]);
     }
 

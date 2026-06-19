@@ -12,7 +12,7 @@ use Filament\Schemas\Components\Tabs\Tab;
 class LocalizedFields
 {
     /**
-     * @param  array<int, array{type: string, name: string, label: string, rows?: int}>  $fields
+     * @param  array<int, array{type: string, name: string, label: string, rows?: int, required?: bool, maxLength?: int}>  $fields
      */
     public static function tabs(array $fields): Tabs
     {
@@ -26,7 +26,7 @@ class LocalizedFields
     }
 
     /**
-     * @param  array<int, array{type: string, name: string, label: string, rows?: int}>  $fields
+     * @param  array<int, array{type: string, name: string, label: string, rows?: int, required?: bool, maxLength?: int}>  $fields
      */
     private static function localeTab(string $label, string $locale, array $fields): Tab
     {
@@ -38,14 +38,14 @@ class LocalizedFields
     }
 
     /**
-     * @param  array{type: string, name: string, label: string, rows?: int}  $field
+     * @param  array{type: string, name: string, label: string, rows?: int, required?: bool, maxLength?: int}  $field
      */
     private static function makeField(array $field, string $locale): TextInput|Textarea|RichEditor
     {
         $name = "{$field['name']}_{$locale}";
         $label = $field['label'];
 
-        return match ($field['type']) {
+        $component = match ($field['type']) {
             'textarea' => Textarea::make($name)
                 ->label($label)
                 ->rows($field['rows'] ?? 4)
@@ -55,6 +55,16 @@ class LocalizedFields
                 ->columnSpanFull(),
             default => TextInput::make($name)->label($label),
         };
+
+        if (($field['required'] ?? false) && $locale === 'en') {
+            $component->required();
+        }
+
+        if (isset($field['maxLength'])) {
+            $component->maxLength($field['maxLength']);
+        }
+
+        return $component;
     }
 
     public static function imageUpload(string $name = 'image_upload', string $label = 'Image'): FileUpload
